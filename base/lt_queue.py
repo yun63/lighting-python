@@ -21,12 +21,7 @@
 """
 
 from base.lt_exception import QueueEmptyException
-
-class Node(object):
-    def __init__(self, elem):
-        self.data = elem
-        self.next = None
-
+from base.lt_node import Node
 
 class Queue(object):
     def __init__(self):
@@ -36,12 +31,41 @@ class Queue(object):
 
     @property
     def size(self):
+        '''
+        队长
+        '''
         return self._size
 
+    @property
+    def front(self):
+        '''
+        取队头结点
+        如果队列为空，抛出异常
+        '''
+        if self.empty():
+            raise QueueEmptyException()
+        return self._front
+
+    @property
+    def rear(self):
+        '''
+        取队尾结点
+        如果队列为空，抛出异常
+        '''
+        if self.empty():
+            raise QueueEmptyException()
+        return self._rear
+
     def empty(self):
+        '''
+        判空
+        '''
         return self._size == 0
 
     def enque(self, item):
+        '''
+        入队列
+        '''
         rear = self._rear
         self._rear = Node(item)
         if self.empty():
@@ -51,25 +75,30 @@ class Queue(object):
         self._size += 1
 
     def deque(self):
+        '''
+        出队列
+        如果队列为空，抛出异常
+        '''
         if self.empty():
             raise QueueEmptyException(caller=self)
         node = self._front
         self._front = self._front.next
         self._size -= 1
-        return node.data
+        return node
 
-
-    def front(self):
-        if self.empty():
-            raise QueueEmptyException(caller=self)
-        return self._front.data
-
-    def rear(self):
-        if self.empty():
-            raise QueueEmptyException(caller=self)
-        return self._rear.data
+    def clear(self):
+        '''
+        清空队列
+        '''
+        for item in self:
+            del item
+        self._front = self._rear = None
+        self._size = 0
 
     def __iter__(self):
+        '''
+        迭代，遍历队列
+        '''
         current = self._front
         while current:
             yield current.data

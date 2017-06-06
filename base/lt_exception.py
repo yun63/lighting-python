@@ -42,19 +42,11 @@ class LTException(Exception):
 
 
 class QueueEmptyException(LTException):
-    def __init__(self,  **argd):
+    def __init__(self):
         super(QueueEmptyException, self).__init__(-1, 'Empty Queue Exception')
-        caller_cls_name = ''
-        try:
-            caller = argd.get('caller', None)
-            if caller:
-                if not hasattr(caller, '__name__'):
-                    caller_cls_name = caller.__class__
-                caller_cls_name = caller.__name__
-        except:
-            pass
-        self._oper = '[ ' + caller_cls_name + '.' + sys._getframe().f_back.f_back.f_code.co_name + ' ]'
 
-    def __str__(self):
-        return '%s: %s occured %s' % (self.err_code, self.what, self._oper)
+
+class StackEmptyException(LTException):
+    def __init__(self):
+        super(QueueEmptyException, self).__init__(-1, 'Empty Stack Exception')
 

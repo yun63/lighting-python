@@ -20,8 +20,8 @@
 
 """
 
-class LinkNode(object):
+class Node(object):
     def __init__(self, elem, node=None):
-        self.elem = elem
+        self.data = elem
         self.next = node
 
