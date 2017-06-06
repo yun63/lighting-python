@@ -32,7 +32,7 @@ class Queue(object):
     @property
     def size(self):
         '''
-        队长
+        队列长度
         '''
         return self._size
 
