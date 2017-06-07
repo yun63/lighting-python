@@ -80,7 +80,7 @@ class Queue(object):
         如果队列为空，抛出异常
         '''
         if self.empty():
-            raise QueueEmptyException(caller=self)
+            raise QueueEmptyException()
         node = self._front
         self._front = self._front.next
         self._size -= 1
