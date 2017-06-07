@@ -48,5 +48,5 @@ class QueueEmptyException(LTException):
 
 class StackEmptyException(LTException):
     def __init__(self):
-        super(QueueEmptyException, self).__init__(-1, 'Empty Stack Exception')
+        super(StackEmptyException, self).__init__(-1, 'Empty Stack Exception')
 

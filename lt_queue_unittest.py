@@ -44,7 +44,17 @@ class QueueTestCase(unittest.TestCase):
         self.assertEqual(self._queue.front, self._queue.rear)
 
     def test_deque(self):
-        d = self._queue.deque()
+        with self.assertRaises(QueueEmptyException) as cm:
+            self._queue.deque()
+        e = cm.exception
+        self.assertEqual(e.err_code, -1)
+        self._queue.enque(123)
+        try:
+            node = self._queue.deque()
+        except QueueEmptyException as e:
+            pass
+        else:
+            self.assertEqual(node.data, 123)
 
     def test_front(self):
         try:

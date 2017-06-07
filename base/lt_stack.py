@@ -76,6 +76,7 @@ class Stack(object):
         while not self.empty():
             node = self.pop()
             del node
+        self._top = None
 
     def __iter__(self):
         current = self._top
