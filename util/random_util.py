@@ -22,7 +22,6 @@
 
 
 import random
-import json
 
 
 def pick_by_weight(items):
@@ -42,16 +41,16 @@ def pick_by_weight(items):
         if base <= curtotal:
             index = i
             break
-    pickedItem = items[index]
+    picked_item = items[index]
     print 'base: %d, sum: %d, index: %d' % (base, total, index)
-    return pickedItem.get('item', {})
+    return picked_item.get('item', {})
 
 
 if __name__ == '__main__':
     items = [
-        {'item': {'lei': 100, 'yun': 200, 'fei': 300}, 'p': 100},
-        {'item': {'lei': 1000, 'yun': 2000, 'fei': 3000}, 'p': 9000},
-        {'item': {'lei': 10000, 'yun': 20000, 'fei': 30000}, 'p': 200}
+        {'item': {'lei': 100, 'yun': 200, 'fei': 300}, 'p': 4000},
+        {'item': {'lei': 1000, 'yun': 2000, 'fei': 3000}, 'p': 3000},
+        {'item': {'lei': 10000, 'yun': 20000, 'fei': 30000}, 'p': 5000}
     ]
     item = pick_by_weight(items)
     print item
