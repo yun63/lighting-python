@@ -85,7 +85,8 @@ class QueueTestCase(unittest.TestCase):
         self._queue.enque({'a': 2})
         self._queue.enque(100)
         self._queue.enque('leiyunfei')
-        print self._queue
+        q = [elem for elem in self._queue]
+        self.assertListEqual(q, [1, {'a': 2}, 100, 'leiyunfei'])
 
     def tearDown(self):
         self._queue = None
