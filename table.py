@@ -75,20 +75,10 @@ class Table(EventDispatcher):
     def _handle_sitdown_event(self, event):
         if isinstance(event, SitdownEvent):
             print event
-<<<<<<< HEAD
-            print event.seat_id, event.seat_id, event.timestamp
-=======
->>>>>>> 5979878d8c8648895c4611f19cb367cd346a0d6b
 
 
 if __name__ == '__main__':
     table = Table(1);
-<<<<<<< HEAD
-    #table.fire(EventBase())
-    table.sitdown(110001, 10001)
-
-=======
     print table._registry
     table.fire(EventBase())
     table.sitdown(10001, 4)
->>>>>>> 5979878d8c8648895c4611f19cb367cd346a0d6b
