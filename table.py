@@ -21,8 +21,17 @@
 """
 
 
-from util.event import EventBase
-from util.event_listener import EventDispatcher
+from core.event import EventBase
+from core.event_listener import EventDispatcher
+
+
+class SitdownEvent(EventBase):
+
+    def __init__(self, user_id, table_id, seat_id):
+        super(SitdownEvent, self).__init__()
+        self.user_id = user_id
+        self.table_id = table_id
+        self.seat_id = seat_id
 
 
 class SitdownEvent(EventBase):
@@ -53,6 +62,9 @@ class Table(EventDispatcher):
     def seats(self):
         return self._seats
 
+    def sitdown(self, user_id, seat_id):
+        self.fire(SitdownEvent(user_id, self.table_id, seat_id))
+
     def _setup_events(self):
         self.on(EventBase, self._handle_event)
         self.on(SitdownEvent, self._handle_sitdown_event)
@@ -63,11 +75,20 @@ class Table(EventDispatcher):
     def _handle_sitdown_event(self, event):
         if isinstance(event, SitdownEvent):
             print event
+<<<<<<< HEAD
             print event.seat_id, event.seat_id, event.timestamp
+=======
+>>>>>>> 5979878d8c8648895c4611f19cb367cd346a0d6b
 
 
 if __name__ == '__main__':
     table = Table(1);
+<<<<<<< HEAD
     #table.fire(EventBase())
     table.sitdown(110001, 10001)
 
+=======
+    print table._registry
+    table.fire(EventBase())
+    table.sitdown(10001, 4)
+>>>>>>> 5979878d8c8648895c4611f19cb367cd346a0d6b

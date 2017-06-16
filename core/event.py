@@ -28,4 +28,4 @@ class EventBase(object):
         self.timestamp = int(time.time())
 
     def __repr__(self):
-        return self.__class__.__name__
+        return '[event] ' + '{type: %s %s}' % (self.__class__.__name__, self.__dict__)
