@@ -20,7 +20,7 @@
 
 """
 
-from util.event import EventBase
+from core.event import EventBase
 
 class EventDispatcher(object):
 
