@@ -52,10 +52,10 @@ def seconds_diff(start, end):
     时间字符串格式:%Y-%m-%d %H:%M:%S.%f
     """
     format = '%Y-%m-%d %H:%M:%S'
-    t1 = datetime.strftime(start, format)
-    t2 = datetime.strftime(end, format)
+    t1 = datetime.strptime(start, format)
+    t2 = datetime.strptime(end, format)
     diff = t2 - t1
-    return diff.days * 86400 + diff.secs
+    return diff.days * 86400 + diff.secsonds
 
 def from_timestamp(timestamp):
     return datetime.fromtimestamp(timestamp)
