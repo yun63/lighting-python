@@ -22,7 +22,6 @@
 
 import time
 from datetime import datetime
-from __future__ import unicode_literals, absolute_import
 
 
 def current_timestamp():
@@ -55,7 +54,7 @@ def seconds_diff(start, end):
     t1 = datetime.strptime(start, format)
     t2 = datetime.strptime(end, format)
     diff = t2 - t1
-    return diff.days * 86400 + diff.secsonds
+    return diff.days * 86400 + diff.seconds
 
 def from_timestamp(timestamp):
     return datetime.fromtimestamp(timestamp)
@@ -80,6 +79,13 @@ def left_seconds():
     """
     return 86400 - lapsed_seconds()
 
-def is_same_day(timestamp1, timestamp2):
-    return datetime.fromtimestamp(timestamp1).date() == datetime.fromtimestamp(timestamp2).date()
+def is_same_day(arg1, arg2):
+    if isinstance(arg1, int) and isinstance(arg2, int):
+        return datetime.fromtimestamp(timestamp1).date() == datetime.fromtimestamp(timestamp2).date()
+    if isinstance(arg1, str) and isinstance(arg2, str):
+        ts1, ts2 = strtime_to_timestamp(arg1), strtime_to_timestamp(arg2)
+        return datetime.fromtimestamp(ts1).date() == datetime.fromtimestamp(ts2).date()
+    if isinstance(arg1, type(datetime.now())) and isinstance(arg2, type(datetime.now())):
+        return arg1.date() == arg2.date()
+    return False
 
