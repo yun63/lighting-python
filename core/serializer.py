@@ -31,10 +31,10 @@ class TYObject(object):
         return self._do_traverse_dict(self.__dict__)
 
     def __repr__(self):
-        return u'|| %s == %s' % (self.__class__.__name__, self.to_dict())
+        return u'| %s | %s' % (self.__class__.__name__, self.to_dict())
 
     def __str__(self):
-        return '|| %s == %s' % (self.__class__.__name__, self.to_dict())
+        return '| %s | %s' % (self.__class__.__name__, self.to_dict())
 
     def _do_traverse_dict(self, inst_dict):
         out = {}

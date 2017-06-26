@@ -77,8 +77,13 @@ class Table(EventDispatcher):
             print event
 
 
+from core.entity import GameEntity
+
 if __name__ == '__main__':
     table = Table(1);
     print table._registry
     table.fire(EventBase())
     table.sitdown(10001, 4)
+
+    e = GameEntity(10001)
+    print e
