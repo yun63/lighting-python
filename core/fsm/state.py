@@ -41,7 +41,7 @@ class State(GameEntity):
         raise NotImplementedError
 
     def excute(self, entity):
-        """ 实体状态更新方法
+        """ 执行实体状态更新方法
         """
         raise NotImplementedError
 
@@ -51,6 +51,7 @@ class State(GameEntity):
         raise NotImplementedError
 
     def on_message(self, entity, telegram):
-        """ 当实体收到消息时执行"""
+        """ 当实体收到消息时执行
+        """
         raise NotImplementedError
 

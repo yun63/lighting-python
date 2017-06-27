@@ -37,6 +37,8 @@ class StateMachine(TYObject):
         self._previous_state = None
         # 全局状态，状态机每次更新时都要调用全局状态的excute方法
         self._global_state = None
+        # 状态机拥有的状态集合{key=name, value=State()}
+        self._state_entries = {}
 
     @property
     def current_state(self):
@@ -44,23 +46,11 @@ class StateMachine(TYObject):
         """
         return self._current_state
 
-    @current_state.setter
-    def current_state(self, state):
-        """ 设置当前状态
-        """
-        self._current_state = state
-
     @property
     def global_state(self):
         """ 获取全局状态
         """
         return self._global_state
-
-    @global_state.setter
-    def global_state(self, state):
-        """ 设置全局状态
-        """
-        self._global_state = state
 
     @property
     def previous_state(self):
@@ -68,11 +58,21 @@ class StateMachine(TYObject):
         """
         return self._previous_state
 
-    @previous_state.setter
-    def previous_state(self, state):
+    def set_global_state(self, state_name):
+        """ 设置全局状态
+        """
+        self._global_state = self._state_entries.get(state_name)
+
+    def set_current_state(self, state_name):
+        """ 设置当前状态
+        """
+        self._current_state = self._state_entries.get(state_name)
+
+
+    def set_previous_state(self, state_name):
         """ 设置前一个状态
         """
-        self._previous_state = state
+        self._previous_state = self._state_entries.get(state_name)
 
     def update(self):
         """ 更新状态机的方法
@@ -84,6 +84,16 @@ class StateMachine(TYObject):
         if self._current_state:
             # 执行当前状态的方法
             self._current_state.excute(self._owner)
+
+    def register_state(self, state):
+        """ 注册子状态
+        """
+        self._state_entries[state.name] = state
+
+    def get_state_by_name(self, name):
+        """ 通过名称获取状态实例
+        """
+        return self._state_entries.get(name)
 
     def handle_message(self, msg):
         """ 处理消息
