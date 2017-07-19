@@ -20,6 +20,8 @@
 
 """
 
+import heapq
+
 from base.lt_exception import QueueEmptyException
 from base.lt_node import Node
 
@@ -109,4 +111,18 @@ class Queue(object):
 
     def __repr__(self):
         return 'Queue(' + str(self) + ')'
+
+
+class PriorityQueue(object):
+
+    def __init__(self):
+        self._queue = []
+        self._index = 0
+
+    def push(self, item, priority):
+        heapq.heappush(self._queue, (-priority, self._index, item))
+        self._index += 1
+
+    def pop(self):
+        return heapq.heappop(self._queue)[-1]
 
