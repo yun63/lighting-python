@@ -114,7 +114,9 @@ class Queue(object):
 
 
 class PriorityQueue(object):
-
+    '''
+    优先级队列
+    '''
     def __init__(self):
         self._queue = []
         self._index = 0

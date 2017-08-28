@@ -22,10 +22,25 @@
 
 import time
 
+from collections import deque
+
 from core.event import EventBase
 from core.event_listener import EventDispatcher
 from core.fsm.state import State
 from core.fsm.state_machine import StateMachine
+
+
+class Cache(object):
+    def __init__(self):
+        self._cache = {}
+        self._cache ['ids'] = [1, 2, 3]
+
+    @property
+    def cache(self):
+        return self._cache
+
+
+__cache_manager = Cache()
 
 
 class SitdownEvent(EventBase):
@@ -156,12 +171,20 @@ class Table(EventDispatcher):
         if isinstance(event, SitdownEvent):
             print event
 
+cache_manager = __cache_manager
 
 import pdb
 from core.entity import GameEntity
 
 if __name__ == '__main__':
     table = Table(1);
-    while True:
-        table.update()
+    print(cache_manager.cache)
+    q = deque(maxlen=3)
+    q.append(1)
+    q.append(2)
+    q.append(3)
+    print(q)
+    q.append(4)
+    q.append(5)
+    print(q)
 
