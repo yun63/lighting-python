@@ -26,10 +26,14 @@ from base.lt_exception import QueueEmptyException
 from base.lt_node import Node
 
 class Queue(object):
+
     def __init__(self):
         self._front = None
         self._rear = None
         self._size = 0
+
+    def __len__(self):
+        return self._size
 
     @property
     def size(self):
